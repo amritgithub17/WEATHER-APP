@@ -7,9 +7,11 @@ function App() {
   const [inputCity,setInputCity]=useState("");
   //Function for API CALL
   const apikey= "1edb50c86721ee51304afec2c9771c96";
+
+  // This function will take the cityName as an argument and then corresponding to the city name will fetch data from API and then will set the data as the reponse that is fetched from API
   const getWeatherDetails=(cityName)=>{
     if(!cityName)return;
-    const apiURL= "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + apikey;
+    const apiURL= "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + apikey; //IMPORTING THE API
     axios.get(apiURL).then((res)=>
     {
       console.log(res.data);
@@ -20,19 +22,20 @@ function App() {
     })
   }
 
+  // This function will change the "inputCity" to the value that will be entered in the placeholder
   const Change =(e)=>
   {
     setInputCity(e.target.value);
   }
+  // This function will be triggeres on clicking the search button and will call another function names
+  //  "getWeatherDetails" in which new "inputcity" will be passed
   const Reaction =() =>
   {
-    // alert("ALl fields are mandatory");
     getWeatherDetails(inputCity);
   }
-  // useEffect(()=>{
-  //   getWeatherDetails("delhi")
-  // },[]);
+  
   return (
+    // This is the part for search button and the placeholder
     <div className="col-md-12">
       <div className="wbg ">
         <h1 className="heading">Weather App</h1>
@@ -44,7 +47,7 @@ function App() {
         </div>
         
 
-
+        {/* This is the part where temperature will be displayed */}
         {Object.keys(data).length>0 && 
         <div className="col-md-12 text-center mt-5">
           <div className="shadow  rounded weatherResultBox">
